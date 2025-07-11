@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Larva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #FFFBE1;
+      color: #222;
+      text-align: center;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    h1, h2, h3 { margin-bottom: 16px; }
+    section { padding: 80px 20px; position: relative; }
+    .logo {
+      width: 260px;
+      margin: 0 auto 40px;
+      display: block;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .frame {
+      border: 6px solid #e0e0e0;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: 0 auto;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeIn 1s ease both;
+    }
+    .frame:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+    .frame img { width: 100%; display: block; }
+    .what-is-larva h2 {
+      font-size: 36px;
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease both;
+    }
+    .description {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 60px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: left;
+      font-size: 16px;
+      line-height: 1.6;
+      animation: fadeIn 1.5s ease both;
+    }
+    .text-block { width: 300px; }
+    .ca-section h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      animation: fadeInUp 1s ease both;
+    }
+    .ca-box {
+      background: white;
+      border: 2px solid #ddd;
+      border-radius: 12px;
+      padding: 14px 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: monospace;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      animation: fadeIn 1.5s ease both;
+    }
+    .ca-label { font-weight: bold; }
+    .ca-visible { font-size: 16px; }
+    #ca-full { position: absolute; left: -9999px; }
+    .ca-box button {
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .ca-box button:hover {
+      background-color: #222;
+      transform: scale(1.05);
+    }
+    .copied-alert {
+      margin-top: 10px;
+      color: green;
+      font-size: 14px;
+      display: none;
+    }
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @media (max-width: 768px) {
+      .description {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+      }
+      .text-block { width: 100%; padding: 0 20px; }
+      .logo { width: 200px; }
+      .ca-box { flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <img src="larva-logo.png" alt="Larva Logo" class="logo">
+    <div class="frame">
+      <img src="larva-photo.png" alt="Larva Beach Scene">
+    </div>
+  </section>
+
+  <section class="what-is-larva">
+    <h2>What is Larva?</h2>
+    <div class="description">
+      <div class="text-block">
+        <h3>🇺🇸</h3>
+        <p><strong>Larva is a Korean animation series loved worldwide.</strong></p>
+        <p>Since its creation in Korea, it has been exported to over 190 countries and has captured the hearts of global audiences.</p>
+        <p>You can even watch it on Netflix!</p>
+      </div>
+      <div class="text-block">
+        <h3>🇰🇷</h3>
+        <p><strong>라바는 전 세계적으로 사랑받는 한국 애니메이션입니다.</strong></p>
+        <p>한국에서 제작되어 190개국에 수출되었고,</p>
+        <p>지금은 넷플릭스에서도 만나볼 수 있어요!</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ca-section">
+    <h2>Contract Address</h2>
+    <div class="ca-box">
+      <span class="ca-label">CA:</span>
+      <span class="ca-visible">SOON</span>
+      <input type="text" value="SOON" id="ca-full" readonly />
+      <button onclick="copyCA()">Copy</button>
+    </div>
+    <div id="copied-alert" class="copied-alert">Copied!</div>
+  </section>
+
+  <script>
+    function copyCA() {
+      const input = document.getElementById("ca-full");
+      input.select();
+      input.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+      const alert = document.getElementById("copied-alert");
+      alert.style.display = "inline";
+      setTimeout(() => {
+        alert.style.display = "none";
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
